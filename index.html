@@ -1,361 +1,237 @@
-html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>模型部署工程师 - 个人简历</title>
-<style>
-/* 全局重置与字体设置 */
-{
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-font-family: "Microsoft YaHei", "SimHei", sans-serif;
-}
-body {
-background-color: #f0f2f5;
-color: #333;
-line-height: 1.6;
-}
-/* 简历主容器：控制整体宽度和居中 */
-.resume-container {
-    width: 900px;
-    margin: 50px auto;
-    background-color: #fff;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-    display: flex; /* 核心：使用Flex布局实现左右分栏 */
-    min-height: 1100px;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历</title>
+    <style>
+        /* 全局重置与字体设置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "SimHei", sans-serif;
+        }
 
-/* ================= 左侧边栏样式 ================= */
-.sidebar {
-    width: 300px;
-    background-color: #2c3e50; /* 深蓝色背景，复刻图片风格 */
-    color: #fff;
-    padding: 40px 30px;
-    text-align: center;
-}
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
 
-/* 头像区域 */
-.avatar img {
-    width: 180px;
-    height: 220px;
-    object-fit: cover;
-    border: 5px solid rgba(255,255,255,0.2);
-    margin-bottom: 25px;
-    background-color: #fff; /* 防止头像未加载时空白 */
-}
+        /* 简历主容器：控制整体宽度和居中 */
+        .resume-container {
+            width: 900px;
+            margin: 50px auto;
+            background-color: #fff;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex; /* 核心：使用Flex布局实现左右分栏 */
+            min-height: auto; /* 高度自适应，不用滚轮 */
+        }
 
-/* 联系信息 */
-.contact-info p {
-    margin-bottom: 12px;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-}
+        /* ================= 左侧边栏样式 ================= */
+        .sidebar {
+            width: 300px;
+            background-color: #2c3e50; /* 深蓝色背景 */
+            color: #fff;
+            padding: 40px 30px;
+            text-align: center;
+            flex-shrink: 0; /* 防止侧边栏被挤压 */
+        }
 
-.contact-info i {
-    width: 20px;
-    text-align: center;
-}
+        /* 头像区域 */
+        .avatar img {
+            width: 180px;
+            height: 220px;
+            object-fit: cover;
+            border: 5px solid rgba(255,255,255,0.2);
+            margin-bottom: 25px;
+            background-color: #fff;
+        }
 
-/* 技能进度条区域 */
-.skills-section h3, .hobbies-section h3 {
-    font-size: 18px;
-    border-left: 4px solid #3498db;
-    padding-left: 10px;
-    margin: 30px 0 15px 0;
-    text-align: left;
-    color: #ecf0f1;
-}
+        /* 联系信息 */
+        .contact-info p {
+            margin-bottom: 12px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
 
-.skill-item {
-    text-align: left;
-    margin-bottom: 15px;
-}
+        .contact-info i {
+            width: 20px;
+            text-align: center;
+        }
 
-.skill-name {
-    font-size: 13px;
-    margin-bottom: 5px;
-    color: #bdc3c7;
-}
+        /* ================= 右侧主内容样式 ================= */
+        .main-content {
+            flex: 1; /* 占据剩余所有宽度 */
+            padding: 40px 50px;
+            background-color: #ffffff;
+        }
 
-.skill-bar-bg {
-    width: 100%;
-    height: 8px;
-    background-color: #34495e;
-    border-radius: 4px;
-    overflow: hidden;
-}
+        /* 头部标题 */
+        .header h1 {
+            font-size: 32px;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
 
-.skill-bar {
-    height: 100%;
-    background-color: #3498db;
-    border-radius: 4px;
-}
+        .header .target {
+            font-size: 16px;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 20px;
+        }
 
-/* 爱好图标 */
-.hobby-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: space-around;
-}
-.hobby-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 12px;
-    color: #bdc3c7;
-    cursor: pointer;
-}
-.hobby-item i { font-size: 24px; margin-bottom: 5px; color: #ecf0f1; }
+        /* 通用模块标题 (教育、工作、项目等) */
+        .section h2 {
+            font-size: 20px;
+            color: #2c3e50;
+            border-left: 5px solid #2980b9;
+            padding-left: 12px;
+            margin: 30px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
+        .section p, .section li {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 8px;
+            text-align: justify;
+        }
 
-/* ================= 右侧主内容样式 ================= */
-.main-content {
-    flex: 1; /* 占据剩余所有宽度 */
-    padding: 40px 50px;
-    background-color: #ffffff;
-}
+        .section ul {
+            list-style: none;
+            padding-left: 10px;
+        }
 
-/* 头部标题 */
-.header h1 {
-    font-size: 32px;
-    color: #2c3e50;
-    margin-bottom: 5px;
-}
+        .section ul li::before {
+            content: "●";
+            color: #3498db;
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            font-size: 12px;
+        }
 
-.header .target {
-    font-size: 16px;
-    color: #7f8c8d;
-    margin-bottom: 30px;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 20px;
-}
+        /* 时间轴样式 */
+        .timeline-item {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 10px;
+        }
+        
+        .timeline-date {
+            width: 160px;
+            font-weight: bold;
+            color: #2980b9;
+            flex-shrink: 0;
+            padding-right: 15px;
+        }
 
-/* 通用模块标题 (教育、工作、项目等) */
-.section h2 {
-    font-size: 20px;
-    color: #2c3e50;
-    border-left: 5px solid #2980b9;
-    padding-left: 12px;
-    margin: 30px 0 15px 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+        .timeline-desc {
+            flex: 1;
+        }
+        .timeline-desc strong {
+            color: #2c3e50;
+        }
 
-.section h2::before {
-    content: "";
-    display: inline-block;
-    width: 24px;
-    height: 24px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.8;
-}
-
-.section p, .section li {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 8px;
-    text-align: justify;
-}
-
-.section ul {
-    list-style: none;
-    padding-left: 10px;
-}
-
-.section ul li::before {
-    content: "●";
-    color: #3498db;
-    font-weight: bold;
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
-    font-size: 12px;
-}
-
-/* 时间轴样式 */
-.timeline-item {
-    display: flex;
-    margin-bottom: 20px;
-    border-bottom: 1px dashed #eee;
-    padding-bottom: 10px;
-}
-
-.timeline-date {
-    width: 160px;
-    font-weight: bold;
-    color: #2980b9;
-    flex-shrink: 0;
-    padding-right: 15px;
-}
-
-.timeline-desc {
-    flex: 1;
-}
-.timeline-desc strong {
-    color: #2c3e50;
-}
-
-/* 项目经历卡片 */
-.project-card {
-    background-color: #f8f9fa;
-    border-left: 3px solid #3498db;
-    padding: 15px;
-    margin-bottom: 15px;
-    border-radius: 0 5px 5px 0;
-}
-.project-card h3 {
-    color: #2c3e50;
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-.highlight {
-    color: #e74c3c;
-    font-weight: bold;
-}
-</style>
-<!-- 引入图标库 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
+        /* 项目经历卡片 */
+        .project-card {
+            background-color: #f8f9fa;
+            border-left: 3px solid #3498db;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 5px 5px 0;
+        }
+        .project-card h3 {
+            color: #2c3e50;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+    </style>
+    <!-- 引入图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-<div class="resume-container">
-    
-    <!-- 左侧边栏 -->
-    <aside class="sidebar">
-        <!-- 1. 头像 (请替换为你自己的照片路径) -->
-        <div class="avatar">
-            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="个人照片">
-        </div>
-
-        <!-- 2. 基础联系信息 -->
-        <div class="contact-info">
-            <i class="fa-solid fa-user"></i> 24岁 | 3年经验
-            <i class="fa-solid fa-location-dot"></i> 广东省深圳市
-            <i class="fa-solid fa-phone"></i> 176-0000-0000
-            <i class="fa-solid fa-envelope"></i> model.deploy@email.com
-        </div>
-
-        <!-- 3. 专业技能 (带进度条) -->
-        <div class="skills-section">
-            <h3>专业技能 (Skills)</h3>
-            <div class="skill-item">
-                <div class="skill-name">深度学习框架 (PyTorch/TF)</div>
-                <div class="skill-bar-bg"><div class="skill-bar" style="width: 90%;"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-name">模型推理优化 (TensorRT/ONNX)</div>
-                <div class="skill-bar-bg"><div class="skill-bar" style="width: 85%;"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-name">高性能计算 (C++/CUDA)</div>
-                <div class="skill-bar-bg"><div class="skill-bar" style="width: 80%;"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-name">部署工具 (Docker/K8s)</div>
-                <div class="skill-bar-bg"><div class="skill-bar" style="width: 75%;"></div></div>
-            </div>
-            <div class="skill-item">
-                <div class="skill-name">大模型服务 (vLLM/TGI)</div>
-                <div class="skill-bar-bg"><div class="skill-bar" style="width: 70%;"></div></div>
-            </div>
-        </div>
-
-        <!-- 4. 兴趣爱好 -->
-        <div class="hobbies-section">
-            <h3>兴趣爱好</h3>
-            <div class="hobby-list">
-                <div class="hobby-item"><i class="fa-solid fa-gamepad"></i>游戏</div>
-                <div class="hobby-item"><i class="fa-solid fa-basketball"></i>篮球</div>
-                <div class="hobby-item"><i class="fa-solid fa-music"></i>音乐</div>
-                <div class="hobby-item"><i class="fa-solid fa-book"></i>阅读</div>
-            </div>
-        </div>
-    </aside>
-
-    <!-- 右侧主内容 -->
-    <main class="main-content">
+    <div class="resume-container">
         
-        <!-- 头部：姓名与意向 -->
-        <header class="header">
-            <h1>张 伟</h1>
-            <span class="target">求职意向：高级模型部署 / MLOps 工程师</span>
-        </header>
-
-        <!-- 教育背景 -->
-        <section class="section">
-            <h2><i class="fa-solid fa-graduation-cap"></i> 教育背景</h2>
-            <div class="timeline-item">
-                <div class="timeline-date">2016.9 - 2020.6</div>
-                <div class="timeline-desc">
-                    <strong>深圳大学 | 计算机科学与技术 (本科)</strong>
-                    主修课程：数据结构、操作系统、计算机网络、机器学习基础、Linux系统编程。
-                </div>
+        <!-- 左侧边栏 -->
+        <aside class="sidebar">
+            <!-- 1. 头像 -->
+            <div class="avatar">
+                <!-- 请确保你的图片文件名正确，或者使用在线链接 -->
+                <img src="证件照.jpg" alt="个人照片">
             </div>
-        </section>
 
-        <!-- 工作经验 -->
-        <section class="section">
-            <h2><i class="fa-solid fa-briefcase"></i> 工作经历</h2>
-            <div class="timeline-item">
-                <div class="timeline-date">2021.3 - 至今</div>
-                <div class="timeline-desc">
-                    <strong>某头部自动驾驶公司 | 模型部署工程师</strong>
+            <!-- 2. 基础联系信息 (图二样式) -->
+            <div class="contact-info">
+                <p><i class="fa-solid fa-user"></i> 22岁</p>
+                <p><i class="fa-solid fa-location-dot"></i> 江苏省徐州市</p>
+                <p><i class="fa-solid fa-phone"></i> 18366986927</p>
+                <p><i class="fa-solid fa-envelope"></i> 84919362@qq.com</p>
+            </div>
+        </aside>
+
+        <!-- 右侧主内容 -->
+        <main class="main-content">
+            
+            <!-- 头部：姓名 -->
+            <header class="header">
+                <h1>季帅杰</h1>
+                <!-- 如果你不需要求职意向，这行可以删掉，我帮你留着备用 -->
+                <div class="target">求职意向：模型部署 / Python开发工程师</div>
+            </header>
+
+            <!-- 教育背景 -->
+            <section class="section">
+                <h2><i class="fa-solid fa-graduation-cap"></i> 教育背景</h2>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023.9 - 2027.6</div>
+                    <div class="timeline-desc">
+                        <strong>徐州医科大学 | 智能医学工程(本科)</strong>
+                        主修课程：数据结构、操作系统、计算机网络、机器学习基础、Linux系统编程。
+                    </div>
+                </div>
+            </section>
+
+            <!-- 项目经历 -->
+            <section class="section">
+                <h2><i class="fa-solid fa-diagram-project"></i> 项目经历</h2>
+                
+                <div class="project-card">
+                    <h3>抗菌肽预测模型研发</h3>
                     <ul>
-                        <li>负责将 BEVFormer、YOLOv8 等核心感知模型部署至车端 NVIDIA Orin 芯片。</li>
-                        <li>主导 TensorRT 引擎构建与 INT8 量化校准，解决动态形状输入兼容性问题。</li>
-                        <li>设计并实现基于共享内存的零拷贝数据传输方案，降低端到端延迟 30%。</li>
+                        <li><strong>数据处理：</strong>基于 Python (Pandas/Biopython) 构建数据清洗管道，处理非结构化生物序列数据，实现特征向量化转换。</li>
+                        <li><strong>模型设计：</strong>采用 PyTorch 搭建深度学习网络，结合卷积与循环结构，捕捉序列的局部特征与长程依赖关系。</li>
+                        <li><strong>训练优化：</strong>应用 Focal Loss 等策略解决样本不平衡问题，利用 Scikit-learn 进行模型验证与调优。</li>
+                        <li><strong>工程落地：</strong>完成模型封装与推理接口开发，实现从数据输入到预测输出的端到端功能闭环。</li>
                     </ul>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- 项目经历 (重点！呼应你上一轮的需求) -->
-        <section class="section">
-            <h2><i class="fa-solid fa-diagram-project"></i> 项目经历</h2>
+            <!-- 自我评价 -->
+            <section class="section">
+                <h2><i class="fa-solid fa-user-check"></i> 自我评价</h2>
+                <div>
+                    具备扎实的 Python 编程基础，熟练掌握语言特性及常用标准库。熟悉常见的 Web 框架与异步编程模型，具备良好的代码规范与工程化思维。善于利用 Python 生态工具（Pandas/NumPy）进行数据处理与自动化脚本开发。
+                </div>
+            </section>
 
-            <div class="project-card">
-                <h3>工业级大模型推理服务搭建 (LLM Deployment)</h3>
-                <ul>
-                    <li><strong>挑战：</strong> 业务场景需在单张 24G 显存的 A100 上部署 72B 参数的大模型，原始 HuggingFace 方案显存溢出且并发极低。</li>
-                    <li><strong>方案：</strong> 
-                        1. 引入 <strong>vLLM</strong> 框架，利用其 PagedAttention 和 Continuous Batching 机制重构服务；
-                        2. 编写自定义调度器，优化 KV Cache 显存块分配策略。
-                    </li>
-                    <li><strong>成果：</strong> 成功将单卡并发 QPS 从 <span class="highlight">3 提升至 25</span>，首字延迟降低 60%，支撑了公司核心客服系统的业务高峰。</li>
-                </ul>
-            </div>
-
-            <div class="project-card">
-                <h3>边缘端实时目标检测优化 (YOLOv5 + TensorRT)</h3>
-                <ul>
-                    <li><strong>痛点：</strong> 工厂流水线质检模型 (YOLOv5s) 在 Jetson Nano 上帧率仅 8 FPS，无法满足 25 FPS 实时性要求。</li>
-                    <li><strong>方案：</strong> 
-                        1. 实现基于 Calibration Cache 的免重构 INT8 量化，解决小目标误检率上升问题；
-                        2. 使用 C++ API 重写预处理与后处理逻辑，剥离 Python GIL 锁限制。
-                    </li>
-                    <li><strong>成果：</strong> 推理速度达到 <span class="highlight">28ms / frame (35 FPS)</span>，显存占用减少 40%，目前已批量部署于 50+ 台边缘设备。</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- 自我评价 -->
-        <section class="section">
-            <h2><i class="fa-solid fa-user-check"></i> 自我评价</h2>
-            具备扎实的 C++ 和系统底层开发能力，熟悉 Linux 内核网络与内存机制。在模型部署领域深耕多年，对从算法到工程的落地全流程有深刻理解。擅长性能瓶颈分析与调优，具备极强的责任心和跨部门协作能力，追求极致的高性能与高可用架构。
-        </section>
-
-    </main>
-</div>
+        </main>
+    </div>
 
 </body>
 </html>
